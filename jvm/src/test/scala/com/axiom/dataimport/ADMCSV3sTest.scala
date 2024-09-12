@@ -12,6 +12,7 @@ class ADMCSV3sTest extends FixtureAnyWordSpec with should.Matchers{
     // Shared setup (run at beginning of test)
     val lineIterator = this.getClass().getResource("/adm.txt").toFile.get.lineIterator
     val parser = CsvParser(';')
+    
 
     val theFixture = FixtureParam(lineIterator,parser)
     try {
