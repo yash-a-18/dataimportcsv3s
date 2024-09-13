@@ -28,6 +28,7 @@ class RandomizeADMTest extends AnyWordSpec with should.Matchers{
       randomize.decodedRows.filter{_.isRight}.size should be > 200
       
       randomize.parsedResult.size should be(randomize.admlines.size)
+      randomize.randomizeAdm()
 
       randomize.newadmoutput.lineCount should be (randomize.admlines.size + 1) //because admlines dropped the header
 
