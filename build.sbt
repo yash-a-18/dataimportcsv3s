@@ -1,7 +1,9 @@
 import org.scalajs.linker.interface.ModuleSplitStyle
+
+ThisBuild / scalaVersion :=  DependencyVersions.scalaVersion
+
 // give the user a nice default project!
 val sharedSettings = Seq(
-  scalaVersion := DependencyVersions.scalaVersion,
   organization := "com.axiom",
   scalacOptions ++=  Seq("-Yretain-trees",//necessary in zio-json if any case classes have default parameters
   "-Xmax-inlines","50") //setting max inlines to accomodate > 32 fields in case classes

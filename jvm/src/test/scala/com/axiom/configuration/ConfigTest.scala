@@ -3,7 +3,7 @@ package com.axiom.configuration
 import org.scalatest._,  wordspec._, matchers._
 import better.files._, Dsl._
 
-import com.axiom.dataimport.dataimportapi.*
+import com.axiom.dataimport.api.*
 
 class ConfigTest extends AnyWordSpec with should.Matchers{
   import com.typesafe.config._
@@ -22,14 +22,14 @@ class ConfigTest extends AnyWordSpec with should.Matchers{
 
   "admfile" should {
     "exist" in {
-      import com.axiom._, dataimport._
+      import com.axiom.dataimport.apiutils.*
       admFile.exists should be(true)
     }
   }
 
   "hospadmFile" should {
     "exist" in {
-      import com.axiom._, dataimport._
+      import com.axiom.dataimport.apiutils.*
       hospadmFile.exists should be(true)
     }
   }

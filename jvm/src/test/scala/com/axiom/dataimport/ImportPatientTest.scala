@@ -1,7 +1,7 @@
 package com.axiom.dataimport
 
 import org.scalatest._, wordspec._, matchers._
-import dataimportapi._
+import api._
 class ImportPatientTest extends AnyWordSpec with should.Matchers{
   "import Patient list " should {
     "contain more than 100 entities" in {
@@ -9,6 +9,4 @@ class ImportPatientTest extends AnyWordSpec with should.Matchers{
     }
 
   }
-
-
 }

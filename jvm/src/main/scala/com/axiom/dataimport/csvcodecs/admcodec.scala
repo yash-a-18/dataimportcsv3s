@@ -1,10 +1,10 @@
-package com.axiom.dataimport
-import utils.{_,given}
-import ru.johnspade.csv3s.printer.CsvPrinter
-import com.axiom.dataimport.utils
+package com.axiom.dataimport.csvcodecs
+
 
 
 object admcodec:
+  import com.axiom.dataimport.util.fieldutils.*
+  import ru.johnspade.csv3s.printer.CsvPrinter
   import ru.johnspade.csv3s._, codecs._, parser._ , instances.given
   import better.files._
 

@@ -1,16 +1,15 @@
-package com.axiom.dataimport
+package com.axiom.dataimport.csvcodecs
 
 import scala.compiletime.ops.boolean
 
 
-import com.axiom.dataimport.utils._
+import com.axiom.dataimport.util.fieldutils._
 
 object hospadmcodec:
 
   import java.time.LocalDate
   import ru.johnspade.csv3s._, codecs._, parser._ , instances.given
   import java.time.LocalDate
-  import utils.{_,given}
   import dataimportcodec.{*,given}
   
 

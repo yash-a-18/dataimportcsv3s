@@ -1,8 +1,9 @@
 package com.axiom.dataimport
-import dataimportapi._
+import api._
 import scala.util.Random
 
 object randomize :
+  import util.fieldutils.*
   lazy val newadmoutput = 
     import com.typesafe.config._
     import better.files._
@@ -19,20 +20,19 @@ object randomize :
   lazy val  randomAccountNumberIterator =  {
     (0 to 2000).map(x =>  Random.nextInt(1000000)).toSet
       .map {n =>
-        utils.AccountNumber(f"TB${n}%06d/23")
+        AccountNumber(f"TB${n}%06d/23")
       }.toIterator    
   }
 
   lazy val randomUnitNumberIterator = 
     (0 to 1000).map(x => Random.nextInt(1000000)).toSet
       .map {n =>
-        utils.UnitNumber(f"TB00${n}%06d")
+        UnitNumber(f"TB00${n}%06d")
       }.toIterator
 
 
 
   lazy val randomHealthcardIterator = 
-    import utils.HealthCard
     val amount = 1000
     val spaces = f"${""}%13s"
     (0 to amount)
@@ -47,7 +47,7 @@ object randomize :
  
   import better.files._
   import scala.io.Source
-  import utils.*
+  import util.*
 
   lazy val  randomNames = 
     val namelist = Source.fromResource("randomnames.txt").getLines().map(n => Name(n.toUpperCase())).toList
@@ -57,9 +57,9 @@ object randomize :
   lazy val  admlines   = Source.fromResource("adm.txt").getLines().toList.drop(1) //drop header
   
 
-  lazy val decodedRows = admcodec.decodeADMtoRow(admlines.iterator).toList
+  lazy val decodedRows = csvcodecs.admcodec.decodeADMtoRow(admlines.iterator).toList
   
-  lazy val parsedResult = admcodec.decodeADM(admlines.iterator).toList
+  lazy val parsedResult = csvcodecs.admcodec.decodeADM(admlines.iterator).toList
 
 
   def randomizeAdm() = 
@@ -69,7 +69,7 @@ object randomize :
                             accountNumber = randomAccountNumberIterator.next(),
                             unitNumber = randomUnitNumberIterator.next())
       }   
-    admcodec.encodeADM(newadmoutput,newAdmData.iterator)   
+    csvcodecs.admcodec.encodeADM(newadmoutput,newAdmData.iterator)   
 
 
 

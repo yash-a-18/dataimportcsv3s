@@ -1,10 +1,10 @@
-package com.axiom.dataimport
+package com.axiom.dataimport.util
 
 import scala.util.Try
 import com.axiom.dataimport.javatime.JavaTimeUtils
 
 
-object utils extends JavaTimeUtils:
+object fieldutils extends JavaTimeUtils:
   trait PadSize:
     val s:String  
     val padSize:Int
@@ -13,6 +13,7 @@ object utils extends JavaTimeUtils:
 
 
 
+    
   case class AccountNumber(s:String) extends PadSize:
     override val padSize = 11 
     
@@ -79,4 +80,4 @@ object utils extends JavaTimeUtils:
   case class Field40(s:String)  extends PadSize:
     override val padSize = 40  
 
-end utils
+end fieldutils

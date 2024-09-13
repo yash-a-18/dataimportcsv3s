@@ -1,49 +1,17 @@
 package com.axiom.dataimport
+
+import ru.johnspade.csv3s.printer.CsvPrinter
+import ru.johnspade.csv3s._, codecs._, parser._ , instances.given
+
 import com.axiom.model.shared.dto.Patient
-import hospadmcodec.HospADM
-import hospadmcodec.given
-import admcodec._
-import com.axiom.model.shared.dto.Patient
-import com.axiom.dataimport.utils
-
-object dataimportapi:
-  import com.typesafe.config._
-  import better.files._, Dsl._
-  import ru.johnspade.csv3s._, ru.johnspade.csv3s.parser._, codecs._
-
-  import java.time._
-  val dateFormat = format.DateTimeFormatter.ofPattern("dd/MM/yyyy")
-
-  private val config: Config = ConfigFactory.load()
-  lazy val admFile =  File(config.getString("app.adm.path"))
-  lazy val hospadmFile = File(config.getString("app.hospadm.path"))
-  private val csvParser = CsvParser(';')
-  
-  private def parseLine[T] (line:String)(using decoder:RowDecoder[T]) =
-    val result = for (
-      row <- parseRow(line,csvParser);
-      adm  <- decoder.decode(row)
-    ) yield adm
-    result
-
-  private def importAdm():List[ADM] = 
-    import admcodec.given
-    val lineIterator = admFile.lineIterator
-    lineIterator.next() //skip header
-    lineIterator.map( parseLine[ADM](_)).collect{ case Right(adm) => adm}.toList
-  end importAdm
-
-  private def importHospAdm():List[HospADM] = 
-    import hospadmcodec.given
-    val lineIterator = hospadmFile.lineIterator
-    lineIterator.next() //skip header
-    lineIterator.map( parseLine[HospADM](_)).collect{ case Right(adm) => adm}.toList
-  end importHospAdm
+import util.fieldutils._
+import csvcodecs.admcodec.ADM
+import csvcodecs.hospadmcodec.HospADM
 
 
-
+object api:
   def adm(hospadm:HospADM): ADM = 
-    import utils._
+    import util._
     ADM(
     hospadm.accountNumber,hospadm.unitNumber,hospadm.name,hospadm.sex,
     hospadm.birthDate,hospadm.healthCard,hospadm.admitDate,hospadm.floor,hospadm.room,hospadm.bed,
@@ -53,7 +21,7 @@ object dataimportapi:
     )
 
   def adm(patient:Patient)  : ADM = 
-    import utils._
+    import util._
     import java.time._
     ADM( 
       AccountNumber(patient.accountNumber),
@@ -125,5 +93,5 @@ object dataimportapi:
       )
   end patient
 
-  def importpatients:List[Patient] = importAdm().map(patient(_))
-end dataimportapi
+  def importpatients:List[Patient] = apiutils.importAdm().map(patient(_))
+end api

@@ -1,10 +1,9 @@
-package com.axiom.dataimport
+package com.axiom.dataimport.csvcodecs
 
 import ru.johnspade.csv3s._, codecs._, parser._ , instances.given
-import utils.*
 import scala.util.Try
-import com.axiom.dataimport.utils
 object dataimportcodec :
+  import com.axiom.dataimport.util.fieldutils.*
   
   given StringEncoder[Field1] = _.padded
   given StringDecoder[Field1] =  s => Try(Field1(s)).toEither.left.map(e => DecodeError.TypeError(e.getMessage))

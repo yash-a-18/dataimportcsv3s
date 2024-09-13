@@ -1,7 +1,7 @@
 package com.axiom.dataimport
 
 import org.scalatest._, wordspec._, matchers._
-import dataimportapi._
+import api._
 import scala.util.Random
 
 
@@ -22,7 +22,7 @@ class RandomizeADMTest extends AnyWordSpec with should.Matchers{
 
   "randomizeAdm " should {
     "randomize names, unitnumber and account number in output file" in {
-      import utils.*
+      import util.*
 
       randomize.admlines.size should be > 200
       randomize.decodedRows.filter{_.isRight}.size should be > 200
