@@ -75,6 +75,6 @@ lazy val dataimportcsv3s = crossProject(JSPlatform, JVMPlatform).crossType(Cross
 
     // Add JS-specific settings here
     libraryDependencies ++= Dependencies.laminar.value,
-    libraryDependencies ++= Dependencies.patientfilterparserjs.value,
+    // libraryDependencies ++= Dependencies.patientfilterparserjs.value,
     scalaJSUseMainModuleInitializer := true,
   )

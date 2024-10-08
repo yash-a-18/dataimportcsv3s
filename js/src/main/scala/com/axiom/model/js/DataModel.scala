@@ -1,7 +1,7 @@
 package com.axiom.model.js
-import com.axiom.model.js.filter.{*,given}
+// import com.axiom.model.js.filter.{*,given}
 import com.axiom.model.shared.dto.*
-import com.axiom.model.queryparser.*
+// import com.axiom.model.queryparser.*
 
 
 import com.raquo.airstream.ownership.OneTimeOwner
@@ -50,17 +50,17 @@ object DataModel :
   val filterQuery = Var[String]("")
 
   /* transforms the query string to a predicate function used for filtering */
-  private val fPredicate = filterQuery.signal.map{ q =>
-    val criteria = parseFilterTerms(q)
-    // dom.console.log(s"filter criteria $criteria")
-    filterPredicate(criteria)
-  }
+  // private val fPredicate = filterQuery.signal.map{ q =>
+  //   val criteria = parseFilterTerms(q)
+  //   // dom.console.log(s"filter criteria $criteria")
+  //   filterPredicate(criteria)
+  // }
 
-  /*  whenever the filter query changes, the filteredPatientTableData is updated */
-  fPredicate.signal.foreach{ p => 
-    val filteredList = patientTableData.now().filter{ p   } 
-    filteredPatientTableData.set(filteredList)
-  }
+  // /*  whenever the filter query changes, the filteredPatientTableData is updated */
+  // fPredicate.signal.foreach{ p => 
+  //   val filteredList = patientTableData.now().filter{ p   } 
+  //   filteredPatientTableData.set(filteredList)
+  // }
 
 
   
