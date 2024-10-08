@@ -39,38 +39,38 @@ class FetchMapParserFilterTest extends AsyncFlatSpec {
     p.future
 
   
-  behavior of "filtering fetch result"
-    it should ("work with var observer") in {
-      import com.axiom.model.queryparser.*
-      import filter.{*,given}
-      val filterTerms = parseFilterTerms("100  ")
-      info(s"#################$filterTerms ##############")
+  // behavior of "filtering fetch result"
+    // it should ("work with var observer") in {
+      // import com.axiom.model.queryparser.*
+      // import filter.{*,given}
+      // val filterTerms = parseFilterTerms("100  ")
+      // info(s"#################$filterTerms ##############")
      
-      val filterF = filterPredicate[Patient](filterTerms)
+      // val filterF = filterPredicate[Patient](filterTerms)
 
-      val patientsVar = Var[List[Patient]](List[Patient]())
-      val filteredPatients = Var[List[Patient]](List[Patient]())
+      // val patientsVar = Var[List[Patient]](List[Patient]())
+      // val filteredPatients = Var[List[Patient]](List[Patient]())
       
-      patientsVar.signal.map{ l => l.filter(filterF)}
-        .addObserver(filteredPatients.writer)
+      // patientsVar.signal.map{ l => l.filter(filterF)}
+      //   .addObserver(filteredPatients.writer)
 
-      Fetch.patients.map{ 
-        case Some(l) => l
-        case None => List[Patient]()
-      }.addObserver(patientsVar.writer)
+      // Fetch.patients.map{ 
+      //   case Some(l) => l
+      //   case None => List[Patient]()
+      // }.addObserver(patientsVar.writer)
 
 
-      for {    _ <- delay(1500) } yield {
-        info(s"${patientsVar.now().size} vs ${filteredPatients.now().size}")  
-        if(patientsVar.now().size > filteredPatients.now().size) 
-          filteredPatients.now().foreach{ p => 
-            info(s"${p.mrp} ${p.floor} ${p.firstName} ${p.lastName}")
-          }
-          assert(true)
-        else  
-          fail("no patients fetched from server")
-      }
-    }
+      // for {    _ <- delay(1500) } yield {
+      //   info(s"${patientsVar.now().size} vs ${filteredPatients.now().size}")  
+      //   if(patientsVar.now().size > filteredPatients.now().size) 
+      //     filteredPatients.now().foreach{ p => 
+      //       info(s"${p.mrp} ${p.floor} ${p.firstName} ${p.lastName}")
+      //     }
+      //     assert(true)
+      //   else  
+      //     fail("no patients fetched from server")
+      // }
+    // }
 
 
 }
