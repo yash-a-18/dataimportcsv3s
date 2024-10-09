@@ -74,7 +74,7 @@ lazy val dataimportcsv3s = crossProject(JSPlatform, JVMPlatform).crossType(Cross
 
 
     // Add JS-specific settings here
+    //TODO move and update this dependency to include laminarext so that I can play with the Fetch functionality
     libraryDependencies ++= Dependencies.laminar.value,
-    // libraryDependencies ++= Dependencies.patientfilterparserjs.value,
     scalaJSUseMainModuleInitializer := true,
   )
