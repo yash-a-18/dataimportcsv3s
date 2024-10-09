@@ -31,15 +31,15 @@ lazy val dataimportcsv3s = crossProject(JSPlatform, JVMPlatform).crossType(Cross
   jvmSettings(
     // Add JVM-specific settings here
     //this maximizes the number of inlines for the csv3s macros for decoding case classes > 22 fields
-    libraryDependencies ++= Seq(
-      Dependencies.zioHttp, 
-      Dependencies.zioTest, 
-      Dependencies.zioTestSBT, 
-      Dependencies.zioTestMagnolia,
-      Dependencies.zioTypesafeConfig,
-      Dependencies.zioLogging
+    // libraryDependencies ++= Seq(
+    //   Dependencies.zioHttp, 
+    //   Dependencies.zioTest, 
+    //   Dependencies.zioTestSBT, 
+    //   Dependencies.zioTestMagnolia,
+    //   Dependencies.zioTypesafeConfig,
+    //   Dependencies.zioLogging
       
-    ),
+    // ),
     libraryDependencies ++= Dependencies.scalaLogging.value,
     libraryDependencies += Dependencies.betterfiles,
     libraryDependencies += Dependencies.csv3s,
