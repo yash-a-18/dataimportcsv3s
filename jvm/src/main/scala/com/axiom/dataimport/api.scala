@@ -29,7 +29,7 @@ object api:
       Name(patient.lastName + "," + patient.firstName),
       patient.sex,
       BirthDate(formattedString(patient.dob.get)),
-      HealthCard(patient.OHIP.getOrElse("")),
+      HealthCard(patient.ohip.getOrElse("")),
       patient.admitDate.get.toLocalDate(),
       Floor(patient.floor.getOrElse("")),
       Room(patient.room.getOrElse("")),
@@ -86,7 +86,7 @@ object api:
       postalCode =  Some(adm.f21.trimmed).flatMap(stringOrNone),
       homePhoneNumber = Some(adm.f22.trimmed).flatMap(stringOrNone),
       workPhoneNumber = Some(adm.f23.trimmed).flatMap(stringOrNone),
-      OHIP = Some(adm.f24.trimmed).flatMap(stringOrNone),
+      ohip = Some(adm.f24.trimmed).flatMap(stringOrNone),
       attending = Some(adm.primaryCare.trimmed).flatMap(stringOrNone),
       collab1 = None,
       collab2 = None

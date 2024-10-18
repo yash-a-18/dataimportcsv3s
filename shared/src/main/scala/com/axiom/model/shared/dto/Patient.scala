@@ -30,7 +30,7 @@ case class Patient(
   postalCode: Option[String],
   homePhoneNumber: Option[String],
   workPhoneNumber: Option[String],
-  OHIP: Option[String],
+  ohip: Option[String],
   attending: Option[String],
   collab1: Option[String],
   collab2: Option[String]
