@@ -21,6 +21,8 @@ jobs:
           curl -L "https://github.com/sbt/sbt/releases/download/v1.9.5/sbt-1.9.5.tgz" | tar xz
           sudo mv sbt /usr/local/bin
           sudo ln -s /usr/local/bin/sbt/bin/sbt /usr/local/bin/sbt
+          # Add sbt to the PATH to ensure it's accessible globally
+          echo "PATH=\$PATH:/usr/local/bin/sbt/bin" >> $GITHUB_ENV
           
       - name: Cache SBT
         uses: coursier/cache-action@v6
