@@ -1,0 +1,29 @@
+name: Publish Data Imports Project
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Cache SBT
+        uses: coursier/cache-action@v6
+
+      - name: Publish to GitHub Packages
+        run: sbt clean compile publish
+        env:
+          JAVA_HOME: ${{ env.JAVA_HOME }}
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
