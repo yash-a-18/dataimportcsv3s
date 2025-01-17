@@ -2,6 +2,20 @@ import org.scalajs.linker.interface.ModuleSplitStyle
 
 ThisBuild / scalaVersion :=  DependencyVersions.scalaVersion
 
+ThisBuild / publishMavenStyle := true
+
+ThisBuild / publishTo := {
+  val releasesRepo = s"https://maven.pkg.github.com/yash-a-18/dataimportcsv3s"
+  Some("github" at releasesRepo)
+}
+
+credentials += Credentials(
+  "GitHub Package Registry",
+  "maven.pkg.github.com",
+  "yash-a-18", // Replace with your GitHub username
+  sys.env.getOrElse("GH_TOKEN", "") // Fetch token from environment variable
+)
+
 // give the user a nice default project!
 val sharedSettings = Seq(
   organization := "com.axiom",
