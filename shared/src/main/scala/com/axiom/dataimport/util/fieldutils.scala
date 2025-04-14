@@ -80,4 +80,7 @@ object fieldutils extends JavaTimeUtils:
   case class Field40(s:String)  extends PadSize:
     override val padSize = 40  
 
+  case class AuroraFile(s:String)  extends PadSize:
+    override val padSize = 40  
+
 end fieldutils

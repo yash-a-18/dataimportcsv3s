@@ -17,12 +17,12 @@ object admcodec:
     birthDate:BirthDate,healthCard:HealthCard,admitDate:LocalDate,floor:Floor,room:Room,bed:Bed,
     mrp:MRP, admittingPhysician:AdmittingPhysician,primaryCare:PrimaryCare ,familyPrivileges:FamilyPrivileges,
     hospitalistFlag:HospitalistFlag,flag:Flag ,service:Service ,f17:Field40,f18:Field30,f19:Field30,f20:Field20,
-    f21:Field1,f22:Field10,f23:Field18,f24:Field18,f25:Field10,f26:Field8)
+    f21:Field1,f22:Field10,f23:Field18,f24:Field18,f25:Field10,f26:Field8, auroraFile:AuroraFile)
 
   case class HOSPADM(accountNumber:AccountNumber,unitNumber:UnitNumber,name:Name,sex:String,
     birthDate:BirthDate,healthCard:HealthCard,admitDate:LocalDate,floor:Floor,room:Room,bed:Bed,
     mrp:MRP, admittingPhysician:AdmittingPhysician,primaryCare:PrimaryCare ,familyPrivileges:FamilyPrivileges,
-    hospitalistFlag:HospitalistFlag,flag:Flag ,service:Service)
+    hospitalistFlag:HospitalistFlag,flag:Flag ,service:Service, auroraFile:AuroraFile)
 
 
   
@@ -73,7 +73,7 @@ object admcodec:
 
   
   def encodeADM(f:File, i:Iterator[ADM]) = 
-    f.overwrite("Account;Unit Number;Patient;Sex;DOB;HCN;Admit Date;Location;Room;Bed;Admitting;Attending;Family;Fam Priv?;Hosp?;Flag;Service")
+    f.overwrite("Account;Unit Number;Patient;Sex;DOB;HCN;Admit Date;Location;Room;Bed;Admitting;Attending;Family;Fam Priv?;Hosp?;Flag;Service;Aurora File?")
     f.appendLine()
     f.printLines(i.map(encodeToString[ADM]))
   def encodeHOSPADM(f:File, i:Iterator[HOSPADM]) = f.printLines(i.map(encodeToString[HOSPADM]))
@@ -87,7 +87,8 @@ object admcodec:
       Field30(""),Field30(""),
       Field20(""),Field1(""),
       Field10(""),Field18(""),
-      Field18(""),Field10(""),Field8("")
+      Field18(""),Field10(""),Field8(""),
+      hadm.auroraFile
     )
 
 end admcodec  

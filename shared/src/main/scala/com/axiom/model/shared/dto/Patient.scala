@@ -33,7 +33,8 @@ case class Patient(
   ohip: Option[String],
   attending: Option[String],
   collab1: Option[String],
-  collab2: Option[String]
+  collab2: Option[String],
+  auroraFile: Option[String]
 )
 
 object Patient:

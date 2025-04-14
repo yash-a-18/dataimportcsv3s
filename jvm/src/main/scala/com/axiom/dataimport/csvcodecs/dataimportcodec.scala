@@ -74,7 +74,8 @@ object dataimportcodec :
   given StringEncoder[FamilyPrivileges] = _.padded
   given StringDecoder[FamilyPrivileges] =  s => Try(FamilyPrivileges(s)).toEither.left.map(e => DecodeError.TypeError(e.getMessage))
   
-
+  given StringEncoder[AuroraFile] = _.padded
+  given StringDecoder[AuroraFile] =  s => Try(AuroraFile(s)).toEither.left.map(e => DecodeError.TypeError(e.getMessage))
 
 
   import java.time.LocalDate

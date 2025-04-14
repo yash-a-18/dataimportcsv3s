@@ -17,7 +17,8 @@ object api:
     hospadm.birthDate,hospadm.healthCard,hospadm.admitDate,hospadm.floor,hospadm.room,hospadm.bed,
     hospadm.mrp,hospadm.admittingPhysician,hospadm.primaryCare,hospadm.familyPrivileges,
     hospadm.hospitalistFlag,hospadm.flag,hospadm.service,
-    Field40(""),Field30(""),Field30(""),Field20(""),Field1(""),Field10(""),Field18(""),Field18(""),Field10(""),Field8("")
+    Field40(""),Field30(""),Field30(""),Field20(""),Field1(""),Field10(""),Field18(""),Field18(""),Field10(""),Field8(""),
+    hospadm.auroraFile
     )
 
   def adm(patient:Patient)  : ADM = 
@@ -50,7 +51,8 @@ object api:
       Field18(""),
       Field18(""),
       Field10(""),
-      Field8("")
+      Field8(""),
+      AuroraFile(patient.auroraFile.getOrElse(""))
     )
 
   def patient(adm:ADM):Patient = 
@@ -89,7 +91,8 @@ object api:
       ohip = Some(adm.f24.trimmed).flatMap(stringOrNone),
       attending = Some(adm.primaryCare.trimmed).flatMap(stringOrNone),
       collab1 = None,
-      collab2 = None
+      collab2 = None,
+      auroraFile = None
       )
   end patient
 
