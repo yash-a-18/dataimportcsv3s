@@ -13,13 +13,13 @@ object admcodec:
   import dataimportcodec.{*,given}
 
 
-  case class ADM(accountNumber:AccountNumber,unitNumber:UnitNumber,name:Name,sex:String,
+  case class ADM(id:Long,accountNumber:AccountNumber,unitNumber:UnitNumber,name:Name,sex:String,
     birthDate:BirthDate,healthCard:HealthCard,admitDate:LocalDate,floor:Floor,room:Room,bed:Bed,
     mrp:MRP, admittingPhysician:AdmittingPhysician,primaryCare:PrimaryCare ,familyPrivileges:FamilyPrivileges,
     hospitalistFlag:HospitalistFlag,flag:Flag ,service:Service ,f17:Field40,f18:Field30,f19:Field30,f20:Field20,
     f21:Field1,f22:Field10,f23:Field18,f24:Field18,f25:Field10,f26:Field8, auroraFile:AuroraFile)
 
-  case class HOSPADM(accountNumber:AccountNumber,unitNumber:UnitNumber,name:Name,sex:String,
+  case class HOSPADM(id:Long,accountNumber:AccountNumber,unitNumber:UnitNumber,name:Name,sex:String,
     birthDate:BirthDate,healthCard:HealthCard,admitDate:LocalDate,floor:Floor,room:Room,bed:Bed,
     mrp:MRP, admittingPhysician:AdmittingPhysician,primaryCare:PrimaryCare ,familyPrivileges:FamilyPrivileges,
     hospitalistFlag:HospitalistFlag,flag:Flag ,service:Service, auroraFile:AuroraFile)
@@ -78,7 +78,7 @@ object admcodec:
     f.printLines(i.map(encodeToString[ADM]))
   def encodeHOSPADM(f:File, i:Iterator[HOSPADM]) = f.printLines(i.map(encodeToString[HOSPADM]))
 
-  def hospADMtoADM(hadm : HOSPADM) = ADM(hadm.accountNumber,hadm.unitNumber,
+  def hospADMtoADM(hadm : HOSPADM) = ADM(hadm.id,hadm.accountNumber,hadm.unitNumber,
       hadm.name,hadm.sex,hadm.birthDate,hadm.healthCard,hadm.admitDate,hadm.floor,hadm.room,
       hadm.bed,hadm.mrp,
       hadm.admittingPhysician,hadm.primaryCare,

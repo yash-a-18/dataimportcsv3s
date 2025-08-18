@@ -5,6 +5,7 @@ import java.time._ //cross scalajs and jvm compatible
 
 
 case class Patient(
+  id: Long,
   accountNumber: String,
   unitNumber: String,
   lastName: String,

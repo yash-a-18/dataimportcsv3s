@@ -12,7 +12,7 @@ import csvcodecs.hospadmcodec.HospADM
 object api:
   def adm(hospadm:HospADM): ADM = 
     import util._
-    ADM(
+    ADM(hospadm.id,
     hospadm.accountNumber,hospadm.unitNumber,hospadm.name,hospadm.sex,
     hospadm.birthDate,hospadm.healthCard,hospadm.admitDate,hospadm.floor,hospadm.room,hospadm.bed,
     hospadm.mrp,hospadm.admittingPhysician,hospadm.primaryCare,hospadm.familyPrivileges,
@@ -25,6 +25,7 @@ object api:
     import util._
     import java.time._
     ADM( 
+      patient.id,
       AccountNumber(patient.accountNumber),
       UnitNumber(patient.unitNumber),
       Name(patient.lastName + "," + patient.firstName),
@@ -63,6 +64,7 @@ object api:
     }
 
     Patient(
+      id = adm.id,
       accountNumber = adm.accountNumber.trimmed,
       unitNumber = adm.unitNumber.trimmed,
       lastName = adm.name.lastName,
